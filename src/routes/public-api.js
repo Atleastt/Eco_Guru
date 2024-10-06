@@ -1,37 +1,11 @@
-const express = require("express");
-const { prismaClient } = require("../application/database");
+import express from "express";
+import userController from '../controller/user-controller.js';
 const publicRouter = new express.Router();
 
-publicRouter.post('/',(req, res)=>{
-    if (!req.body.username){
-        res.send('Username is Empty!')
-    }
+publicRouter.post('/api/users', userController.register);
+publicRouter.post('/api/users/login', userController.login);
+publicRouter.get('/api/users', userController.get);
 
-    if (!req.body.password){
-        res.send('Password is Empty!')
-    }
-    
-    if (req.body.username !== 'Admin' ){
-        res.send('Username not Registered')
-    }
-
-    if (req.body.password !== 'Admin123' ){
-        res.send('Password is false')
-    }
-    res.json({success:true, status:200})
-})
-
-publicRouter.get('/user',async(req, res)=>{
-    const data = await prismaClient.User.findMany({
-        select:{
-            id:true,
-            email:true,
-            name:true,
-        }
-    });
-    return res.status(200).json({
-        data:data
-    })
-})
-
-module.exports = {publicRouter};
+export {
+    publicRouter
+}

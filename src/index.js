@@ -1,7 +1,8 @@
-const { web } = require('./application/web');
+import { web } from "./application/web.js";
+import { logger } from "./application/logging.js";
 
+const port = process.env.PORT;
 
-web.listen(3000, ()=>{
-    console.log('jalan')
-})
-
+web.listen(port, () => {
+  logger.info(`App start on Port ${port}`);
+});
