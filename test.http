@@ -1,3 +1,55 @@
-GET http://localhost:3000/user
+GET http://localhost:3000/api/users
 Content-Type: application/json
 Accept: application/json
+
+###
+
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "khannedy",
+  "password" : "rahasia",
+  "phone" : "0865675443"
+}
+
+###
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "khannedy",
+  "password" : "rahasia"
+}
+
+
+###
+
+GET http://localhost:3000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+
+
+###
+
+PATCH http://localhost:3000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+
+{
+  "username" : "Eko Kurniawan Khannedy",
+  "phone": "0858566779"
+}
+
+
+###
+
+DELETE http://localhost:3000/api/users/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
