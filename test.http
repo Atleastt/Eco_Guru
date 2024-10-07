@@ -1,55 +1,57 @@
+### Get All User
 GET http://localhost:3000/api/users
 Content-Type: application/json
 Accept: application/json
+Authorization: a4d989c9-1d74-4131-be35-fee93bf7c453
 
-###
-
+### Register
 POST http://localhost:3000/api/users
 Content-Type: application/json
 Accept: application/json
 
 {
-  "username" : "khannedy",
+  "username" : "Asep",
   "password" : "rahasia",
-  "phone" : "0865675443"
+  "phone" : "08656456443"
 }
 
-###
+### Login
 
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
 Accept: application/json
 
 {
-  "username" : "khannedy",
-  "password" : "rahasia"
+  "username" : "Asep Supriyadi",
+  "password" : "ganteng"
 }
 
 
-###
+### Get Current User
 
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+Authorization: 38b07208-8bbc-45ff-9e17-057da24b6e1b
 
 
-###
+### Update User
 
 PATCH http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+Authorization: 38b07208-8bbc-45ff-9e17-057da24b6e1b
 
 {
-  "username" : "Eko Kurniawan Khannedy",
-  "phone": "0858566779"
+  "username" : "Asep Supriyadi",
+  "phone": "085843536779",
+  "password": "ganteng"
 }
 
 
-###
+### Logout
 
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+Authorization: 3771d297-a5d6-4001-8a4c-c1b5b2868d15
