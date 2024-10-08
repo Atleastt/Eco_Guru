@@ -1,6 +1,7 @@
-GET http://localhost:3000/api/users
+GET http://localhost:3000/api/admin/users
 Content-Type: application/json
 Accept: application/json
+Authorization: 0d5c5e63-5fda-4bed-9820-d81d98f1cf90
 
 ###
 
@@ -10,6 +11,7 @@ Accept: application/json
 
 {
   "username" : "khannedy",
+  "name": "Eko Kurniawan Khannedy",
   "password" : "rahasia",
   "phone" : "0865675443"
 }
@@ -21,8 +23,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username" : "khannedy",
-  "password" : "rahasia"
+  "usernameOrPhone" : "user1",
+  "password" : "password123"
 }
 
 
@@ -31,7 +33,7 @@ Accept: application/json
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
 
 
 ###
@@ -39,11 +41,11 @@ Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
 PATCH http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
 
 {
-  "username" : "Eko Kurniawan Khannedy",
-  "phone": "0858566779"
+  "username" : "khannedy",
+  "phone": "0851111111"
 }
 
 
@@ -52,4 +54,25 @@ Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: e102fa1d-91e0-4c87-b626-937158ca29d3
+Authorization: 57ef4cc6-00a1-45c4-8b4e-903260b0c588
+
+
+###
+
+GET http://localhost:3000/api/admin/users/get-one?username=khannedy
+Content-Type: application/json
+Accept: application/json
+Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
+
+
+###
+
+PATCH http://localhost:3000/api/admin/user/update?username=khannedy
+Content-Type: application/json
+Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
+
+{
+    "name": "Aom",
+    "phone": "081222222",
+    "role_id": 2
+}
