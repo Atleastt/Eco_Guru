@@ -3,8 +3,8 @@ Content-Type: application/json
 Accept: application/json
 Authorization: 0d5c5e63-5fda-4bed-9820-d81d98f1cf90
 
-###
 
+### Register
 POST http://localhost:3000/api/users
 Content-Type: application/json
 Accept: application/json
@@ -13,10 +13,10 @@ Accept: application/json
   "username" : "khannedy",
   "name": "Eko Kurniawan Khannedy",
   "password" : "rahasia",
-  "phone" : "0865675443"
+  "phone" : "08656456443"
 }
 
-###
+### Login
 
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
@@ -28,7 +28,7 @@ Accept: application/json
 }
 
 
-###
+### Get Current User
 
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
@@ -36,7 +36,7 @@ Accept: application/json
 Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
 
 
-###
+### Update User
 
 PATCH http://localhost:3000/api/users/current
 Content-Type: application/json
@@ -49,7 +49,7 @@ Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
 }
 
 
-###
+### Logout
 
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
