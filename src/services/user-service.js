@@ -29,46 +29,57 @@ const register = async (request) => {
         data: user,
         select: {
             username: true,
+            name: true,
             phone: true
         }
     });
 }
 
 const login = async (request) => {
-    const loginRequest = validate(loginUserValidation, request);
+    request = validate(loginUserValidation, request);
 
-    const user = await prismaClient.users.findUnique({
-        where: {
-            username: loginRequest.username
-        },
-        select: {
-            username: true,
-            password: true
-        }
+    const user = await prismaClient.users.findFirst({
+      where: {
+        OR: [
+          { username: request.usernameOrPhone },
+          { phone: request.usernameOrPhone }
+        ]
+      },
+      include: { Roles: true } 
     });
 
+  
     if (!user) {
-        throw new ResponseError(401, "Username or password wrong");
+      throw new Error('User not found');
     }
 
-    const isPasswordValid = await bcrypt.compare(loginRequest.password, user.password);
+    const isPasswordValid = await bcrypt.compare(request.password, user.password);
+
     if (!isPasswordValid) {
-        throw new ResponseError(401, "Username or password wrong");
+      throw new Error('Invalid password');
     }
 
     const token = uuid().toString()
-    return prismaClient.users.update({
+    console.log("token",token);
+    console.log("username",request.usernameOrPhone)
+    const update = prismaClient.users.update({
         data: {
             token: token
         },
         where: {
-            username: user.username
+            id: user.id,
         },
         select: {
             token: true
         }
     });
-}
+
+    if(!update){
+        throw new Error('User not found');
+    }
+
+    return user;
+};
 
 const logout = async (username) => {
     username = validate(getUserValidation, username);
@@ -101,7 +112,8 @@ const get = async (username) => {
     const user = await prismaClient.users.findMany({
       select: {
         username: true,
-        phone: true
+        phone: true,
+        name: true
       }
     });
 
@@ -139,6 +151,7 @@ const update = async (username,request) => {
         data: data,
         select: {
             username: true,
+            name: true,
             phone: true
         }
     })
@@ -164,6 +177,47 @@ const getCurrent = async (username) => {
     return user;
 }
 
+const getUserByUsername = async (username) => {
+    username = validate(getUserValidation, username);
+  
+    // Query untuk mencari user berdasarkan username
+    const user = await prismaClient.users.findFirst({
+      where: { username: username },
+      select:{
+        username: true,
+        name: true,
+        phone: true
+      }
+    });
+  
+    if (!user) {
+      throw new Error('User not found');
+    }
+  
+    return user;
+};
+
+  const updateUser = async (username, data) => {
+    username = validate(getUserValidation, username);
+
+    if (!username) {
+        throw new Error('Username is required');
+    }
+
+    const updatedUser = await prismaClient.users.update({
+        where: { username: username },
+        data: data,
+        select:{
+            username: true,
+            name: true,
+            phone: true,
+            role_id: true
+        }
+    });
+
+    return updatedUser;
+};
+
 
 export default {
     get,
@@ -171,5 +225,7 @@ export default {
     register,
     logout,
     update,
-    getCurrent
+    getCurrent,
+    getUserByUsername,
+    updateUser
 }

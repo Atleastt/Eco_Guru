@@ -11,7 +11,7 @@ model Roles {
   id             Int             @id @default(autoincrement())
   name           String          @unique
   users          Users[]
-  Authorizations Authorizations? // One-to-One relation
+  Authorizations Authorizations?
 }
 
 model Privileges {
@@ -25,15 +25,16 @@ model Authorizations {
   Roles        Roles      @relation(fields: [id_role], references: [id])
   Privileges   Privileges @relation(fields: [id_privilege], references: [id_privilege])
 
-  @@unique([id_role, id_privilege]) // Unique Constraint
+  @@unique([id_role, id_privilege])
 }
 
 model Users {
   id       Int     @id @default(autoincrement())
-  username String  
+  name     String?
+  username String  @unique
   password String
   phone    String? @unique
-  role_id  Int     
+  role_id  Int    
   token    String? @db.VarChar(100)
   Roles    Roles   @relation(fields: [role_id], references: [id])
 

@@ -1,8 +1,8 @@
-### Get All User
-GET http://localhost:3000/api/users
+GET http://localhost:3000/api/admin/users
 Content-Type: application/json
 Accept: application/json
-Authorization: a4d989c9-1d74-4131-be35-fee93bf7c453
+Authorization: 0d5c5e63-5fda-4bed-9820-d81d98f1cf90
+
 
 ### Register
 POST http://localhost:3000/api/users
@@ -10,7 +10,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username" : "Asep",
+  "username" : "khannedy",
+  "name": "Eko Kurniawan Khannedy",
   "password" : "rahasia",
   "phone" : "08656456443"
 }
@@ -22,8 +23,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username" : "Asep Supriyadi",
-  "password" : "ganteng"
+  "usernameOrPhone" : "user1",
+  "password" : "password123"
 }
 
 
@@ -32,7 +33,7 @@ Accept: application/json
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: 38b07208-8bbc-45ff-9e17-057da24b6e1b
+Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
 
 
 ### Update User
@@ -40,12 +41,11 @@ Authorization: 38b07208-8bbc-45ff-9e17-057da24b6e1b
 PATCH http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: 38b07208-8bbc-45ff-9e17-057da24b6e1b
+Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
 
 {
-  "username" : "Asep Supriyadi",
-  "phone": "085843536779",
-  "password": "ganteng"
+  "username" : "khannedy",
+  "phone": "0851111111"
 }
 
 
@@ -54,4 +54,25 @@ Authorization: 38b07208-8bbc-45ff-9e17-057da24b6e1b
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: 3771d297-a5d6-4001-8a4c-c1b5b2868d15
+Authorization: 57ef4cc6-00a1-45c4-8b4e-903260b0c588
+
+
+###
+
+GET http://localhost:3000/api/admin/users/get-one?username=khannedy
+Content-Type: application/json
+Accept: application/json
+Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
+
+
+###
+
+PATCH http://localhost:3000/api/admin/user/update?username=khannedy
+Content-Type: application/json
+Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
+
+{
+    "name": "Aom",
+    "phone": "081222222",
+    "role_id": 2
+}

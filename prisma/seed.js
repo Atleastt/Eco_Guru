@@ -1,8 +1,11 @@
 import {PrismaClient} from "@prisma/client";
+import bcrypt from "bcrypt";
+import {v4 as uuid} from "uuid";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  const hashedPassword = await bcrypt.hash('password123', 10);
   // Seed Roles
   const adminRole = await prisma.roles.createMany({
     data: [
@@ -20,8 +23,10 @@ async function main() {
   await prisma.users.create({
     data: {
       username: "user1",
-      password: "password123",
+      name: "admin 1",
+      password: hashedPassword,
       phone: "081234567890",
+      token: uuid().toString(),
       role_id: 1,
     },
   });
