@@ -48,38 +48,34 @@ const login = async (request) => {
       include: { Roles: true } 
     });
 
-  
     if (!user) {
       throw new Error('User not found');
     }
 
     const isPasswordValid = await bcrypt.compare(request.password, user.password);
-
     if (!isPasswordValid) {
       throw new Error('Invalid password');
     }
 
-    const token = uuid().toString()
-    console.log("token",token);
-    console.log("username",request.usernameOrPhone)
-    const update = prismaClient.users.update({
-        data: {
-            token: token
-        },
-        where: {
-            id: user.id,
-        },
-        select: {
-            token: true
-        }
+    const token = uuid().toString();
+
+    const updatedUser = await prismaClient.users.update({
+      data: {
+        token: token
+      },
+      where: {
+        id: user.id
+      },
+      include: { Roles: true } 
     });
 
-    if(!update){
-        throw new Error('User not found');
+    if (!updatedUser) {
+      throw new Error('Failed to update user token');
     }
 
-    return user;
+    return updatedUser; 
 };
+
 
 const logout = async (username) => {
     username = validate(getUserValidation, username);
@@ -136,6 +132,9 @@ const update = async (username,request) => {
     const data = {};
     if (user.username) {
         data.username = user.username;
+    }
+    if (user.name) {
+        data.name = user.name;
     }
     if (user.password) {
         data.password = await bcrypt.hash(user.password, 10);
@@ -197,7 +196,7 @@ const getUserByUsername = async (username) => {
     return user;
 };
 
-  const updateUser = async (username, data) => {
+const updateUser = async (username, data) => {
     username = validate(getUserValidation, username);
 
     if (!username) {

@@ -1,7 +1,8 @@
+###
 GET http://localhost:3000/api/admin/users
 Content-Type: application/json
 Accept: application/json
-Authorization: 0d5c5e63-5fda-4bed-9820-d81d98f1cf90
+Authorization: 8bd51261-a252-4126-b495-452850cb92d2
 
 ###
 
@@ -10,10 +11,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username" : "khannedy",
-  "name": "Eko Kurniawan Khannedy",
+  "username" : "asep",
+  "name": "Asep Kurniawan Khannedy",
   "password" : "rahasia",
-  "phone" : "0865675443"
+  "phone" : "0822275443"
 }
 
 ###
@@ -23,8 +24,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "usernameOrPhone" : "user1",
-  "password" : "password123"
+  "usernameOrPhone" : "khannedy",
+  "password" : "rahasia"
 }
 
 
@@ -33,7 +34,7 @@ Accept: application/json
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
 Accept: application/json
-Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
+Authorization: 2fe94663-1629-49da-8b5a-2ce783de145b
 
 
 ###
@@ -54,7 +55,7 @@ Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
 Accept: application/json
-Authorization: 57ef4cc6-00a1-45c4-8b4e-903260b0c588
+Authorization: a4bc70b5-dbd7-4e69-8c58-1cafc1c5c14a
 
 
 ###
@@ -76,3 +77,90 @@ Authorization: 96a8bd00-a81b-4404-9f1d-4f68f5a2e998
     "phone": "081222222",
     "role_id": 2
 }
+
+###
+# Create UOM
+POST http://localhost:3000/api/uom/create
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+{
+  "unit": "Kilogram",
+  "isDeleted": false
+}
+
+###
+
+# Update UOM
+PUT http://localhost:3000/api/uom/update/1
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+{
+  "unit": "Updated Kilogram",
+  "isDeleted": true
+}
+
+###
+
+# Delete UOM
+DELETE http://localhost:3000/api/uom/delete/3
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+
+###
+# Get One UOM
+GET http://localhost:3000/api/uom/get-one/1
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+
+###
+# Get All Uom
+GET http://localhost:3000/api/uom/get
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+
+###
+# Create Waste Category
+POST http://localhost:3000/api/waste-category/create
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+{
+  "category": "Plastic",
+  "isDeleted": false
+}
+
+###
+
+# Update Waste Category
+PUT http://localhost:3000/api/waste-category/update/8
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+{
+  "category": "Updated Plastic",
+  "isDeleted": true
+}
+
+###
+
+# Delete Waste Category
+DELETE http://localhost:3000/api/waste-category/delete/8
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+
+###
+# Get One Waste Category
+GET http://localhost:3000/api/waste-category/get-one/1
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e
+
+
+###
+# Get All Waste Category
+GET http://localhost:3000/api/waste-category/get
+Content-Type: application/json
+Authorization: 2baa581c-cebe-48fa-9bb6-ce24dce0fc5e

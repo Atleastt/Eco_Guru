@@ -2,7 +2,9 @@ import { prismaClient } from "../application/database.js";
 import bcrypt from 'bcrypt';
 
 export const adminMiddleware = async (req, res, next) => {
+    console.log("WWKWKKW");
     const token = req.get('Authorization');
+
     
     if (!token) {
         return res.status(401).json({
