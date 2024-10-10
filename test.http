@@ -4,8 +4,8 @@ Content-Type: application/json
 Accept: application/json
 Authorization: 8bd51261-a252-4126-b495-452850cb92d2
 
-###
 
+### Register
 POST http://localhost:3000/api/users
 Content-Type: application/json
 Accept: application/json
@@ -17,7 +17,7 @@ Accept: application/json
   "phone" : "0822275443"
 }
 
-###
+### Login
 
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
@@ -29,7 +29,7 @@ Accept: application/json
 }
 
 
-###
+### Get Current User
 
 GET http://localhost:3000/api/users/current
 Content-Type: application/json
@@ -37,7 +37,7 @@ Accept: application/json
 Authorization: 2fe94663-1629-49da-8b5a-2ce783de145b
 
 
-###
+### Update User
 
 PATCH http://localhost:3000/api/users/current
 Content-Type: application/json
@@ -50,7 +50,7 @@ Authorization: 3c6c9733-f14f-4527-af65-03b816f02035
 }
 
 
-###
+### Logout
 
 DELETE http://localhost:3000/api/users/logout
 Content-Type: application/json
